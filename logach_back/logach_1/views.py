@@ -26,15 +26,10 @@ class TaskListView(generics.ListAPIView):
         queryset = Task.objects.all()
 
         ps = self.request.query_params
-
         theme = ps.get('theme', None)
-        type = ps.get('type', None)
-
+        
         if theme:
             queryset = queryset.filter(theme=theme)
-
-        if type:
-            queryset = queryset.filter(type=type)
         return queryset
 
 class TaskOneView(generics.RetrieveAPIView):
